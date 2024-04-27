@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="governmentPortal">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government e-Portal</title>
+    <link rel="stylesheet" href="main-page.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="MainController">
+    <header>
+        <h1>Welcome to Indian Government e-Portal</h1>
+        <p>Empowering Citizens, Enhancing Services</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="https://www.ncs.gov.in/">Apply for Government Jobs</a></li>
+            <li><a href="https://services.india.gov.in/">Pay Taxes Online</a></li>
+            <li><a href="https://www.india.gov.in/my-government/government-directory">Find Your Nearest Government Office</a></li>
+            <li><a href="https://www.india.gov.in/news_lists">Latest News & Updates</a></li>
+            <li><a href="https://www.india.gov.in/my-government/publications">Explore Government Publications</a></li>
+        </ul>
+    </nav>
+
+    <select ng-model="selectedSection" ng-options="section.id as section.name for section in sections">
+        <option value="">Select Section</option>
+    </select>
+
+    <section id="about" class="highlightable" ng-repeat="section in sections" ng-show="selectedSection == section.id">
+        <h2>{{ section.name }}</h2>
+        <p ng-bind-html="section.content"></p>
+    </section>
+
+    <footer>
+        <p>Need Help? For assistance or inquiries, please contact our customer support team at +91-987-654-3210.</p>
+        <p>Disclaimer: Indian Government e-Portal is maintained by me. While we strive to provide accurate and
+            up-to-date information, we cannot guarantee the completeness or accuracy of all content.</p>
+        <p><a href="https://www.aicte-india.org/privacy-policy">Privacy Policy</a> | <a href="https://services.india.gov.in/page/show/terms_of_use/en">Terms of Use</a></p>
+        <p>2024 Indian Government. All rights reserved.</p>
+    </footer>
+
+    <script src="main-page.js"></script>
+    <script>
+        angular.module('governmentPortal', [])
+        .controller('MainController', function($scope, $sce) {
+            $scope.sections = [
+                {
+                    id: 'about',
+                    name: 'About Us',
+                    content: 'Indian Government e-Portal serves as your gateway to accessing a wide range of government services and information conveniently online. Our mission is to provide efficient, transparent, and citizen-centric services to all residents. Learn more about us <a href="https://www.india.gov.in/">here</a>.'
+                },
+                {
+                    id: 'popular-services',
+                    name: 'Popular Services',
+                    content: 'Some popular services provided by the Indian Government e-Portal include applying for birth/death certificates, renewal of driving license, property tax payment, and utility bill payments.'
+                },
+                {
+                    id: 'latest-news',
+                    name: 'Latest News & Updates',
+                    content: 'Stay updated with the latest news and updates from the Indian Government e-Portal. Get announcements about new initiatives, reminders about deadlines, and opportunities to participate in public consultations.'
+                },
+                {
+                    id: 'get-involved',
+                    name: 'Get Involved',
+                    content: 'Get involved with the Indian Government e-Portal by sharing your feedback, participating in surveys, and joining discussions on important issues.'
+                },
+                {
+                    id: 'connect',
+                    name: 'Connect With Us',
+                    content: 'Stay connected with us on social media for real-time updates, news, and events. Follow us on Facebook, Twitter, and Instagram.'
+                }
+            ];
+
+            angular.forEach($scope.sections, function(section) {
+                section.content = $sce.trustAsHtml(section.content);
+            });
+        });
+    </script>
+</body>
+</html>

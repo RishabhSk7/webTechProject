@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Log In Form</title>
+    <link rel="stylesheet" href="login-style.css">
+    <script src="login-script.js"></script>
+</head>
+<body>
+    
+    <div class="log-in">
+        <h2>Log-in Form</h2>
+        <form  id="loginForm" class="login-form">
+            <div id="username-group">
+                <label for="username">Username:</label>
+                <input type="text" placeholder="Username" id="username" name="username" required/>
+                <span id="forgot-username" class="forgot-link">Forgot username?</span>
+            </div>
+            
+            <div id="email-group" style="display: none;">
+                <label for="email">Email:</label>
+                <input type="email" placeholder="Email" id="email" name="email" required/>
+                <span id="forgot-email" class="forgot-link">Forgot email?</span>
+            </div>
+    
+            <label for="password">Password:</label>
+            <input type="password" placeholder="Password" id="password" name="password" required/>
+    
+            <a href="../Main Page/main-page.html"><input type="submit" value="Log In" /></a>
+        </form>
+
+        <p>If you're not registered, <a href="../Register Page/register.html">register now</a>.</p>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            window.location.href = "../Main Page/main-page.html";
+            console.log("Form Submitted");
+        });
+    </script>
+</body>
+</html>
